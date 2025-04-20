@@ -1,13 +1,6 @@
-import { Link, useOutletContext } from "react-router";
+import { Link } from "react-router";
 
-export default function ProductTile({ product }) {
-  const { cart, setCart } = useOutletContext();
-
-  function AddToCart(params) {
-    console.log("Add to cart");
-    setCart([...cart, product]);
-  }
-
+export default function CartItem({ product }) {
   return (
     <Link to={"/product/" + product.pid}>
       <div
@@ -22,11 +15,8 @@ export default function ProductTile({ product }) {
           ></img>
         )}
         <p className="text-gray-700">${product.price}</p>
-        <button
-          onClick={AddToCart}
-          className="mt-2 bg-blue-500 text-white py-1 px-4 rounded"
-        >
-          Add to Cart
+        <button className="mt-2 bg-blue-500 text-white py-1 px-4 rounded">
+          Remove From Cart
         </button>
       </div>
     </Link>
