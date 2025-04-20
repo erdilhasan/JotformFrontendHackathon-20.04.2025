@@ -9,7 +9,7 @@ export default function CartPage(params) {
   useEffect(() => {
     console.log(cart);
     setTotalCost(getTotalCost());
-  }, []);
+  }, [cart]);
 
   const getTotalCost = () => {
     return cart.reduce(

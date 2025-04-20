@@ -30,33 +30,31 @@ export default function CartItem({ product }) {
     localStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);
   return (
-    <Link to={"/product/" + product.pid}>
-      <div
-        key={product.id}
-        className="border rounded-lg p-4 shadow-md hover:shadow-lg transition-shadow duration-300"
+    <div
+      key={product.id}
+      className="border rounded-lg p-4 shadow-md hover:shadow-lg transition-shadow duration-300"
+    >
+      <h2 className="text-xl font-bold">{product.name}</h2>
+      {product.images && (
+        <img
+          className="object-fill w-1/2 h-1/2"
+          src={JSON.parse(product.images)[0]}
+        ></img>
+      )}
+      <p className="text-gray-700">${product.price}</p>
+      <p className="text-gray-700">Quantity:{product.quantity}</p>
+      <button
+        onClick={decrementQuantity}
+        className="mt-2 bg-blue-500 text-white py-1 px-4 rounded"
       >
-        <h2 className="text-xl font-bold">{product.name}</h2>
-        {product.images && (
-          <img
-            className="object-fill w-1/2 h-1/2"
-            src={JSON.parse(product.images)[0]}
-          ></img>
-        )}
-        <p className="text-gray-700">${product.price}</p>
-        <p className="text-gray-700">Quantity:{product.quantity}</p>
-        <button
-          onClick={decrementQuantity}
-          className="mt-2 bg-blue-500 text-white py-1 px-4 rounded"
-        >
-          -
-        </button>
-        <button
-          onClick={incrementQuantity}
-          className="mt-2 bg-blue-500 text-white py-1 px-4 rounded"
-        >
-          +
-        </button>
-      </div>
-    </Link>
+        -
+      </button>
+      <button
+        onClick={incrementQuantity}
+        className="mt-2 bg-blue-500 text-white py-1 px-4 rounded"
+      >
+        +
+      </button>
+    </div>
   );
 }
