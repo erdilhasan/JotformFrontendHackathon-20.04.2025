@@ -1,4 +1,4 @@
-import { FaHome } from "react-icons/fa";
+import { FaHome, FaProductHunt } from "react-icons/fa";
 import { FaBasketShopping } from "react-icons/fa6";
 import { MdAccountCircle } from "react-icons/md";
 import { Link, Outlet } from "react-router";
@@ -14,6 +14,11 @@ export default function Layout() {
             </Link>
           </li>
 
+          <li className="px-4">
+            <Link className="flex" to="/allproducts">
+              <FaProductHunt className="m-auto"></FaProductHunt> All Products
+            </Link>
+          </li>
           <li className="px-4">
             <Link className="flex" to="/cart">
               <FaBasketShopping className="m-auto"></FaBasketShopping> Cart
