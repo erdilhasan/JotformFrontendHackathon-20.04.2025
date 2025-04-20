@@ -16,9 +16,21 @@ export default function ProductDetailPage(params) {
       return jsonObject["pid"] == pid;
     })[0];
   }
-  function AddToCart(params) {
-    setCart([...cart, product]);
-  }
+  const AddToCart = () => {
+    setCart((prevCart) => {
+      const existing = prevCart.find((item) => item.pid === product.pid);
+
+      if (existing) {
+        return prevCart.map((item) =>
+          item.pid === product.pid
+            ? { ...item, quantity: item.quantity + 1 }
+            : item
+        );
+      } else {
+        return [...prevCart, { ...product, quantity: 1 }];
+      }
+    });
+  };
   useEffect(() => {
     fetch(
       "https://api.jotform.com/form/251074120478957/payment-info?apiKey=" +
