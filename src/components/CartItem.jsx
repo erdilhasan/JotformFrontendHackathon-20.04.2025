@@ -1,6 +1,31 @@
-import { Link } from "react-router";
+import { Link, useOutletContext } from "react-router";
 
 export default function CartItem({ product }) {
+  const { cart, setCart } = useOutletContext();
+
+  const decrementQuantity = () => {
+    setCart(
+      (prevCart) =>
+        prevCart
+          .map((item) =>
+            item.pid === product.pid
+              ? { ...item, quantity: item.quantity - 1 }
+              : item
+          )
+          .filter((item) => item.quantity > 0) // remove item if quantity drops to 0
+    );
+  };
+
+  const incrementQuantity = () => {
+    setCart((prevCart) =>
+      prevCart.map((item) =>
+        item.pid === product.pid
+          ? { ...item, quantity: item.quantity + 1 }
+          : item
+      )
+    );
+  };
+
   return (
     <Link to={"/product/" + product.pid}>
       <div
@@ -15,8 +40,18 @@ export default function CartItem({ product }) {
           ></img>
         )}
         <p className="text-gray-700">${product.price}</p>
-        <button className="mt-2 bg-blue-500 text-white py-1 px-4 rounded">
-          Remove From Cart
+        <p className="text-gray-700">Quantity:{product.quantity}</p>
+        <button
+          onClick={decrementQuantity}
+          className="mt-2 bg-blue-500 text-white py-1 px-4 rounded"
+        >
+          -
+        </button>
+        <button
+          onClick={incrementQuantity}
+          className="mt-2 bg-blue-500 text-white py-1 px-4 rounded"
+        >
+          +
         </button>
       </div>
     </Link>
