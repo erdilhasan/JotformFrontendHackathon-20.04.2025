@@ -1,12 +1,23 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ProductTile from "../components/ProductTile";
 
 export default function AllProductsPage(params) {
+  const apiKey = import.meta.env.VITE_JOTFORM_API_KEY;
   const [products, setProducts] = useState([
     { id: 1, title: "Product 1", price: 100 },
     { id: 2, title: "Product 2", price: 200 },
     { id: 3, title: "Product 3", price: 300 },
   ]);
+
+  useEffect(() => {
+    fetch(
+      "https://api.jotform.com/form/251074120478957/payment-info?apiKey=" +
+        apiKey
+    ).then((response) =>
+      response.json().then((data) => setProducts(data.content.products))
+    );
+    console.log(products);
+  }, []);
 
   return (
     <div>

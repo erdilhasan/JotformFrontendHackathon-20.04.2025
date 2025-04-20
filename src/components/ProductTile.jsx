@@ -13,7 +13,7 @@ export default function ProductTile({ product }) {
       key={product.id}
       className="border rounded-lg p-4 shadow-md hover:shadow-lg transition-shadow duration-300"
     >
-      <h2 className="text-xl font-bold">{product.title}</h2>
+      <h2 className="text-xl font-bold">{product.name}</h2>
       <p className="text-gray-700">${product.price}</p>
       <button
         onClick={AddToCart}
