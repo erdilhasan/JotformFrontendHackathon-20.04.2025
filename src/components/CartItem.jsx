@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Link, useOutletContext } from "react-router";
 
 export default function CartItem({ product }) {
@@ -25,7 +26,9 @@ export default function CartItem({ product }) {
       )
     );
   };
-
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }, [cart]);
   return (
     <Link to={"/product/" + product.pid}>
       <div

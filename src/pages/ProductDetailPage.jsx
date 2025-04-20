@@ -58,6 +58,10 @@ export default function ProductDetailPage(params) {
     console.log(product);
   }, []);
 
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }, [cart]);
+
   return (
     <div>
       {product && (

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaHome, FaProductHunt, FaStar } from "react-icons/fa";
 import { FaBasketShopping } from "react-icons/fa6";
 import { MdAccountCircle } from "react-icons/md";
@@ -8,6 +8,14 @@ export default function Layout() {
   //global cart
   const [cart, setCart] = useState([]);
   const [favourites, setFavourites] = useState([]);
+
+  useEffect(() => {
+    const storedCart = localStorage.getItem("cart");
+    if (storedCart) {
+      setCart(JSON.parse(storedCart));
+    }
+  }, []);
+
   return (
     <div className="">
       <nav className="flex shadow-md rounded-md bg-white  m-0 content-between justify-between p-2">
