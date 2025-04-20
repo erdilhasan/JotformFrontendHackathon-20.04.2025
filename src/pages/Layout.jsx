@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { FaHome, FaProductHunt } from "react-icons/fa";
+import { FaHome, FaProductHunt, FaStar } from "react-icons/fa";
 import { FaBasketShopping } from "react-icons/fa6";
 import { MdAccountCircle } from "react-icons/md";
 import { Link, Outlet } from "react-router";
@@ -7,6 +7,7 @@ import { Link, Outlet } from "react-router";
 export default function Layout() {
   //global cart
   const [cart, setCart] = useState([]);
+  const [favourites, setFavourites] = useState([]);
   return (
     <div className="">
       <nav className="flex shadow-md rounded-md bg-white  m-0 content-between justify-between p-2">
@@ -27,9 +28,14 @@ export default function Layout() {
               <FaBasketShopping className="m-auto"></FaBasketShopping> Cart
             </Link>
           </li>
+          <li className="px-4">
+            <Link className="flex" to="/favourites">
+              <FaStar className="m-auto"></FaStar> Favourites
+            </Link>
+          </li>
         </ul>{" "}
       </nav>
-      <Outlet context={{ cart, setCart }}></Outlet>
+      <Outlet context={{ cart, setCart, favourites, setFavourites }}></Outlet>
     </div>
   );
 }

@@ -7,6 +7,7 @@ export default function ProductDetailPage(params) {
   const apiKey = import.meta.env.VITE_JOTFORM_API_KEY;
 
   const { cart, setCart } = useOutletContext();
+  const { favourites, setFavourites } = useOutletContext();
 
   const [product, setProduct] = useState(null);
 
@@ -16,6 +17,20 @@ export default function ProductDetailPage(params) {
       return jsonObject["pid"] == pid;
     })[0];
   }
+
+  const toggleFavourite = () => {
+    setFavourites((prev) => {
+      const exists = prev.find((item) => item.pid === product.pid);
+      if (exists) {
+        // Remove from favourites
+        return prev.filter((item) => item.pid !== product.pid);
+      } else {
+        // Add to favourites
+        return [...prev, product];
+      }
+    });
+  };
+
   const AddToCart = () => {
     setCart((prevCart) => {
       const existing = prevCart.find((item) => item.pid === product.pid);
@@ -64,6 +79,12 @@ export default function ProductDetailPage(params) {
             className="mt-2 bg-blue-500 text-white py-1 px-4 rounded"
           >
             Add to Cart
+          </button>
+          <button
+            onClick={toggleFavourite}
+            className="mt-2 bg-blue-500 text-white py-1 px-4 rounded"
+          >
+            {favourites.find((fav) => fav.id === product.id) ? "💔" : "❤️"}
           </button>
         </div>
       )}

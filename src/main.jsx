@@ -8,6 +8,7 @@ import CartPage from "./pages/CartPage.jsx";
 import AllProductsPage from "./pages/AllProductsPage.jsx";
 import ProductDetailPage from "./pages/ProductDetailPage.jsx";
 import CheckoutPage from "./pages/CheckoutPage.jsx";
+import FavouritesPage from "./pages/FavoritesPage.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
@@ -19,6 +20,7 @@ createRoot(document.getElementById("root")).render(
           <Route path="/allproducts" element={<AllProductsPage />} />
           <Route path="/product/:pid" element={<ProductDetailPage />} />
           <Route path="/checkout" element={<CheckoutPage />} />
+          <Route path="/favourites" element={<FavouritesPage />} />
         </Route>
       </Routes>
     </BrowserRouter>
