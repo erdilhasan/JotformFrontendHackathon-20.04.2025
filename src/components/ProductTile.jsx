@@ -4,7 +4,6 @@ export default function ProductTile({ product }) {
   const { cart, setCart } = useOutletContext();
 
   function AddToCart(params) {
-    console.log("Add to cart");
     setCart([...cart, product]);
   }
 
