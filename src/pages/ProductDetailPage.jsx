@@ -5,6 +5,7 @@ export default function ProductDetailPage(params) {
   let { pid } = useParams();
 
   const apiKey = import.meta.env.VITE_JOTFORM_API_KEY;
+  const form_id = import.meta.env.VITE_FORM_ID;
 
   const { cart, setCart } = useOutletContext();
   const { favourites, setFavourites } = useOutletContext();
@@ -48,7 +49,9 @@ export default function ProductDetailPage(params) {
   };
   useEffect(() => {
     fetch(
-      "https://api.jotform.com/form/251074120478957/payment-info?apiKey=" +
+      "https://api.jotform.com/form/" +
+        form_id +
+        "/payment-info?apiKey=" +
         apiKey
     ).then((response) =>
       response.json().then((data) => {
